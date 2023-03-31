@@ -1,0 +1,26 @@
+@mixin flex($flex-direction, $justify, $align) {
+    display: flex;
+    flex-direction: $flex-direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+$smartphone: 480px;
+$tablet: 767px;
+$desktop: 1024px;
+$desktop-large: 1500px;
+
+@mixin respondTo($media) {
+  @if $media == smartphone {
+    @media (max-width: $smartphone) { @content; }
+  }
+  @else if $media == tablet {
+    @media (min-width: $tablet) { @content; }
+  }
+  @else if $media == desktop {
+    @media (min-width: $desktop) { @content; }
+  }
+  @else if $media == desktop-large {
+    @media (min-width: $desktop-large) { @content; }
+  }
+}
