@@ -11,14 +11,14 @@ export default function TaskList() {
 
 
   async function getTask() {
-    const response = await fetch('http://localhost:4000/api/tasks/');
+    const response = await fetch('https://mern-to-do.onrender.com/api/tasks/');
     const data = await response.json();
     console.log(data)
     getTaskData(data);
   }
 
   async function deleteTask(id) {
-    const response = await fetch('http://localhost:4000/api/tasks/delete/' + id, {
+    const response = await fetch('https://mern-to-do.onrender.com/api/tasks/delete/' + id, {
       method: "DELETE"
     });
     const data = await response.json();

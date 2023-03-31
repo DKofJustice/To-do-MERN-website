@@ -40,7 +40,7 @@ export default function AddTask() {
         return setErrorMsg('The time cannot be in the past');
       }
 
-      const response = await fetch('http://localhost:4000/api/tasks/create', {
+      const response = await fetch('https://mern-to-do.onrender.com/api/tasks/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
