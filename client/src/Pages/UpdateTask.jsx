@@ -37,7 +37,7 @@ export default function UpdateTask() {
         return setErrorMsg('The time cannot be in the past');
       }
 
-      const response = await fetch('http://localhost:4000/api/tasks/update/' + id, {
+      const response = await fetch('https://mern-to-do.onrender.com/api/tasks/update/' + id, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
