@@ -22,6 +22,10 @@ div.task-list-page {
         @include flex(column, flex-start, flex-start);
     }
 
+    p.loading-message {
+        padding: 5rem;
+    }
+
     button.add-task-button {
         background-color: $primary-blue;
         position: fixed;
@@ -35,8 +39,9 @@ div.task-list-page {
         column-gap: 2rem;
         padding-left: 3rem;
         cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
 
-        &:active {
+        &:active, &:hover {
             background-color: $primary-blue-hover;
         }
 

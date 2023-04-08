@@ -24,6 +24,24 @@ router.post('/create', async (req, res) => {
     }
 })
 
+router.put('/update/:id', async (req, res) => {
+    try {
+        const { title, date, time } = await req.body
+
+        const updateTask = await Task.findByIdAndUpdate({ _id: req.params.id }, { title, date, time }, { new: true })
+        await updateTask.save()
+
+        if(!updateTask) {
+            return res.status(201).json({message: `No task with id : ${req.params.id}`})
+        }
+
+        res.status(201).json({updateTask, message: 'Task updated successfuly'})
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({ message: 'Sorry, we could not craete the task. Please try again...'})
+    }
+})
+
 router.delete('/delete/:id', async (req, res) => {
     try {
         const deleteTask = await Task.findByIdAndDelete(req.params.id)

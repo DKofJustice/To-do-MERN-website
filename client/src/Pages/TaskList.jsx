@@ -13,7 +13,6 @@ export default function TaskList() {
   async function getTask() {
     const response = await fetch('https://mern-to-do.onrender.com/api/tasks/');
     const data = await response.json();
-    console.log(data)
     getTaskData(data);
   }
 
@@ -22,7 +21,6 @@ export default function TaskList() {
       method: "DELETE"
     });
     const data = await response.json();
-    console.log(data);
 
     getTaskData(taskData => taskData.filter(task => task._id !== data.deleteTask._id));
   }
@@ -36,7 +34,7 @@ export default function TaskList() {
         <h1>Task List</h1>
 
         <div className='task-list'>
-            {(typeof taskData === 'undefined') ? (<p>Loading...</p>) : (
+            {(typeof taskData === 'undefined') ? (<p className='loading-message'>Loading...</p>) : (
               taskData.map(task => 
               (
                 <div className='task-item' key={task._id}>
@@ -53,7 +51,7 @@ export default function TaskList() {
                   </div>
 
                   <button className='delete-task'><img src={TrashIcon} alt="" onClick={() => deleteTask(task._id)} /></button>
-                  <button className='task-details'><img src={ThreeDots} alt="" /></button>
+                  <Link to='/task/update' state={{ id: task._id, title: task.title, date: task.date.substring(0,10), time: task.time }} ><button className='task-details'><img src={ThreeDots} alt="" /></button></Link>
                 </div>
               ))
             )}
